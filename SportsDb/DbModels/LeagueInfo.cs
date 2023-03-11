@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SportsDb.DbContext
+namespace SportsDb.DbModels
 {
     public class LeagueInfo
     {
@@ -8,5 +8,6 @@ namespace SportsDb.DbContext
         public string LeagueId { get; set; }
         public int NumberOfTeams { get; set; }
         public string Sport { get; set; }
+
     }
 }
