@@ -11,47 +11,47 @@ namespace SportsDb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LeaguesController : ControllerBase
+    public class TeamsController : ControllerBase
     {
         private readonly SportInfoDbContext _context;
 
-        public LeaguesController(SportInfoDbContext context)
+        public TeamsController(SportInfoDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Leagues
+        // GET: api/Teams
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<League>>> GetLeagues()
+        public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
         {
-            return await _context.Leagues.ToListAsync();
+            return await _context.Teams.ToListAsync();
         }
 
-        // GET: api/Leagues/5
+        // GET: api/Teams/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<League>> GetLeague(int id)
+        public async Task<ActionResult<Team>> GetTeam(int id)
         {
-            var league = await _context.Leagues.FindAsync(id);
+            var team = await _context.Teams.FindAsync(id);
 
-            if (league == null)
+            if (team == null)
             {
                 return NotFound();
             }
 
-            return league;
+            return team;
         }
 
-        // PUT: api/Leagues/5
+        // PUT: api/Teams/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLeague(int id, League league)
+        public async Task<IActionResult> PutTeam(int id, Team team)
         {
-            if (id != league.Id)
+            if (id != team.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(league).State = EntityState.Modified;
+            _context.Entry(team).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace SportsDb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LeagueExists(id))
+                if (!TeamExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace SportsDb.Controllers
             return NoContent();
         }
 
-        // POST: api/Leagues
+        // POST: api/Teams
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<League>> PostLeague(League league)
+        public async Task<ActionResult<Team>> PostTeam(Team team)
         {
-            _context.Leagues.Add(league);
+            _context.Teams.Add(team);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLeague", new { id = league.Id }, league);
+            return CreatedAtAction("GetTeam", new { id = team.Id }, team);
         }
 
-        // DELETE: api/Leagues/5
+        // DELETE: api/Teams/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLeague(int id)
+        public async Task<IActionResult> DeleteTeam(int id)
         {
-            var league = await _context.Leagues.FindAsync(id);
-            if (league == null)
+            var team = await _context.Teams.FindAsync(id);
+            if (team == null)
             {
                 return NotFound();
             }
 
-            _context.Leagues.Remove(league);
+            _context.Teams.Remove(team);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool LeagueExists(int id)
+        private bool TeamExists(int id)
         {
-            return _context.Leagues.Any(e => e.Id == id);
+            return _context.Teams.Any(e => e.Id == id);
         }
     }
 }

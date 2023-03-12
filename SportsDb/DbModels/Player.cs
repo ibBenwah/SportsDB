@@ -8,8 +8,7 @@ namespace SportsDb.DbModels
     {
         [Key]
         public int Id { get; set; }
-        public int PlayerId { get; set; }
-        
+       
         public string PlayerName { get; set; }
     }
 }
