@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //  Setup DbContext for dependency injection and use the DefaultConnection value from out secrets.json
-builder.Services.AddDbContext<LeagueInfoDbContext>(options => options.UseSqlServer(builder.Configuration["DefaultConnection"]));
+builder.Services.AddDbContext<SportInfoDbContext>(options => options.UseSqlServer(builder.Configuration["DefaultConnection"]));
 
 var app = builder.Build();
 
