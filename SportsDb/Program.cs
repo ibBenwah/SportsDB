@@ -12,6 +12,18 @@ builder.Services.AddSwaggerGen();
 //  Setup DbContext for dependency injection and use the DefaultConnection value from out secrets.json
 builder.Services.AddDbContext<SportInfoDbContext>(options => options.UseSqlServer(builder.Configuration["DefaultConnection"]));
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200/")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
